@@ -1,0 +1,47 @@
+
+1> Temperature_data = [{bangalore, 35}, {chennai, 40}, {dehradun, 25}, {delhi, 45}, {vizag, 33}, {ooty, 26}, {suratkal, 41}].
+[{bangalore,35},
+ {chennai,40},
+ {dehradun,25},
+ {delhi,45},
+ {vizag,33},
+ {ooty,26},
+ {suratkal,41}]
+2>[X||{X,Y}<-Temperature_data,Y>=25,Y=<35]. 
+[bangalore,dehradun,vizag,ooty]
+
+
+4> cd("G:/").
+G:/
+ok
+5> c(erlang_module2).
+erlang_module2.erl:4: Warning: variable 'Y' is unused
+{ok,erlang_module2}
+6> Tupl={bangalore,35}.                     
+{bangalore,35}
+7> erlang_module2:is_cool_temp(Tupl).
+{bangalore,true}
+
+9> erlang_module2:is_cool_temp({delhi,45}).
+{delhi,false}
+
+12> Temperature_boolean_data=[erlang_module2:is_cool_temp({X,Y})||{X,Y}<-Temperature_data].
+[{bangalore,true},
+ {chennai,false},
+ {dehradun,true},
+ {delhi,false},
+ {vizag,true},
+ {ooty,true},
+ {suratkal,false}]
+
+14> [X||{X,true}<-Temperature_boolean_data]. 
+[bangalore,dehradun,vizag,ooty]
+
+16> erlang_module2:to_farenheit(37).
+98.60000000000001
+17>[{X,erlang_module2:to_farenheit(Y)}||{X,Y}<-Temperature_data,Y>=25,Y=<35].
+[{bangalore,95.0},
+ {dehradun,77.0},
+ {vizag,91.4},
+ {ooty,78.80000000000001}]
+
